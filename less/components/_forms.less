@@ -1,0 +1,43 @@
+@import "../abstracts/_variables";
+
+form {
+  max-width: 100%;
+  background: transparent;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
+
+  label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: @text-color;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 1.2rem;
+    background: @bg-tertiary;
+    border: 1px solid @border-color;
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: @transition;
+
+    &:focus {
+      outline: none;
+      border-color: @primary;
+      background: rgba(79, 70, 229, 0.05);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+}

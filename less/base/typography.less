@@ -1,0 +1,45 @@
+@import "../abstracts/_variables";
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @font-heading;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  color: #fff;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, @accent-2 0%, @accent 50%, @primary 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradientFlow 5s ease infinite;
+}
+
+p.subtitle {
+  color: @text-muted;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  max-width: 700px;
+  font-weight: 300;
+  
+  &.centered {
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+}
+
+.text-center { text-align: center; }

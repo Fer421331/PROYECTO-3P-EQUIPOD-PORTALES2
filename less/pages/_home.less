@@ -1,0 +1,183 @@
+@import "../abstracts/_variables";
+
+/* ====== HERO SECTION ====== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding-top: 100px;
+  overflow: hidden;
+
+  &-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.4;
+    transform: scale(1.05);
+    animation: bgZoom 20s infinite alternate;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, transparent, @bg-color);
+    }
+  }
+
+  &-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    z-index: 1;
+    border-radius: 50%;
+    filter: blur(50px);
+  }
+
+  &-content {
+    z-index: 2;
+    max-width: 900px;
+    position: relative;
+
+    p { margin: 0 auto 3rem; }
+  }
+
+  &-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+}
+
+@keyframes bgZoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.15); }
+}
+
+/* ====== MASONRY / PORTFOLIO ====== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 350px;
+  gap: 2rem;
+
+  &-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid @border-color;
+
+    &.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 0;
+    }
+
+    &:hover {
+      img { transform: scale(1.08); }
+      .gallery-overlay { opacity: 1; }
+      .gallery-overlay h3, .gallery-overlay p {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  &-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 2.5rem;
+    opacity: 0;
+    transition: @transition;
+
+    h3 {
+      color: #fff;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: @accent;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+      opacity: 0;
+    }
+  }
+}
+
+/* ====== MARQUEE (CLIENTES) ====== */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 3rem 0;
+  background: @bg-tertiary;
+  border-top: 1px solid @border-color;
+  border-bottom: 1px solid @border-color;
+  display: flex;
+  align-items: center;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 40s linear infinite;
+
+  &:hover { animation-play-state: paused; }
+
+  &-item {
+    width: 250px;
+    height: 120px;
+    margin: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid @border-color;
+    border-radius: 12px;
+    filter: grayscale(100%) opacity(0.5);
+    transition: @transition;
+    padding: 1rem;
+
+    &:hover {
+      filter: grayscale(0%) opacity(1);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

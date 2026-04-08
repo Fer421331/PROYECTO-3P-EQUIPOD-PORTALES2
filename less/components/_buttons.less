@@ -1,0 +1,63 @@
+@import "../abstracts/_variables";
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 100px;
+  font-family: @font-body;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: @transition;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &-primary {
+    background: #fff;
+    color: #000;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+      transition: @transition;
+      z-index: -1;
+    }
+
+    &:hover::before {
+      left: 100%;
+      transition: 0.6s;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  &-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    &:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-3px);
+    }
+  }
+
+  &-gradient {
+    background: linear-gradient(135deg, @primary, @accent);
+    color: #fff;
+    &:hover {
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+      transform: translateY(-3px) scale(1.02);
+    }
+  }
+}
